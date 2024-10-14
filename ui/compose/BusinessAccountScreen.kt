@@ -1,4 +1,4 @@
-package com.example.myandroidplayground
+package com.example.myandroidplayground.ui.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -30,6 +30,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myandroidplayground.presentation.ActionEnum
+import com.example.myandroidplayground.R
+import com.example.myandroidplayground.presentation.UiState
 
 @Composable
 fun BusinessAccountScreen(

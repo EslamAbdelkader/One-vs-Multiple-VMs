@@ -1,5 +1,5 @@
 // BalanceFormatter.kt
-package com.example.myandroidplayground.mappers
+package com.example.myandroidplayground.presentation.mappers
 
 import javax.inject.Inject
 

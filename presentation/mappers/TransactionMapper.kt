@@ -1,9 +1,9 @@
 // TransactionMapper.kt
-package com.example.myandroidplayground.mappers
+package com.example.myandroidplayground.presentation.mappers
 
 import androidx.compose.ui.graphics.Color
-import com.example.myandroidplayground.Transaction
-import com.example.myandroidplayground.TransactionData
+import com.example.myandroidplayground.presentation.Transaction
+import com.example.myandroidplayground.data.TransactionData
 import javax.inject.Inject
 
 class TransactionMapper @Inject constructor() {

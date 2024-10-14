@@ -1,9 +1,9 @@
 // BusinessAccountMapper.kt
-package com.example.myandroidplayground.mappers
+package com.example.myandroidplayground.presentation.mappers
 
-import com.example.myandroidplayground.BusinessAccountData
-import com.example.myandroidplayground.UiState
-import com.example.myandroidplayground.UserData
+import com.example.myandroidplayground.data.BusinessAccountData
+import com.example.myandroidplayground.presentation.UiState
+import com.example.myandroidplayground.data.UserData
 import javax.inject.Inject
 
 class BusinessAccountMapper @Inject constructor(

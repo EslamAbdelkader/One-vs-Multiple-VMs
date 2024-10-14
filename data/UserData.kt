@@ -1,5 +1,5 @@
 // UserData.kt
-package com.example.myandroidplayground
+package com.example.myandroidplayground.data
 
 data class UserData(
     val merchantCode: String,

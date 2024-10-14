@@ -1,7 +1,7 @@
 // HeaderTitleFormatter.kt
-package com.example.myandroidplayground.mappers
+package com.example.myandroidplayground.presentation.mappers
 
-import com.example.myandroidplayground.UserData
+import com.example.myandroidplayground.data.UserData
 import javax.inject.Inject
 
 class HeaderTitleFormatter @Inject constructor() {

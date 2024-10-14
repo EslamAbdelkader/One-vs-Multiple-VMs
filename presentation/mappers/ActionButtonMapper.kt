@@ -1,8 +1,8 @@
 // ActionButtonMapper.kt
-package com.example.myandroidplayground.mappers
+package com.example.myandroidplayground.presentation.mappers
 
-import com.example.myandroidplayground.ActionButtonData
-import com.example.myandroidplayground.UserData
+import com.example.myandroidplayground.presentation.ActionButtonData
+import com.example.myandroidplayground.data.UserData
 import javax.inject.Inject
 
 class ActionButtonMapper @Inject constructor() {
