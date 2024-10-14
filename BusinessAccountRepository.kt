@@ -5,11 +5,20 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.List
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.random.Random
 
+@Singleton
 class BusinessAccountRepository @Inject constructor() {
-    fun getBusinessAccountData(): BusinessAccountData {
+    private val cache = MutableStateFlow<BusinessAccountData?>(null)
+
+    suspend fun fetchBusinessAccountData() {
+        // Simulate network delay
+        kotlinx.coroutines.delay(1000)
+
         // Throw an exception with a 20% probability to simulate an error
         if (Random.nextInt(5) == 0) {
             throw Exception("Random error occurred while fetching business account data")
@@ -34,14 +43,14 @@ class BusinessAccountRepository @Inject constructor() {
             }
 
             TransactionData(
+                id = it,
                 title = if (amount < 0) "To: Electricity company" else "SumUp pay-in",
                 amount = formattedAmount,
-                description = description,
-                id = Random.nextInt()
+                description = description
             )
         }
 
-        return BusinessAccountData(
+        val businessAccountData = BusinessAccountData(
             accountHeaderTitle = "Business Account",
             accountBalance = formattedBalance,
             accountBalanceDescription = "Available balance",
@@ -49,10 +58,27 @@ class BusinessAccountRepository @Inject constructor() {
             transactions = transactions,
             incomingOutgoingTitle = "Incoming vs. Outgoing",
             actionButtons = listOf(
-                ActionButtonData(icon = Icons.Default.ArrowForward, label = "Send money", actionEnum = ActionEnum.SEND_MONEY),
-                ActionButtonData(icon = Icons.Default.Add, label = "Add money", actionEnum = ActionEnum.ADD_MONEY),
-                ActionButtonData(icon = Icons.Default.List, label = "Insights", actionEnum = ActionEnum.INSIGHTS)
+                ActionButtonData(
+                    icon = Icons.Default.ArrowForward,
+                    label = "Send money",
+                    actionEnum = ActionEnum.SEND_MONEY
+                ),
+                ActionButtonData(
+                    icon = Icons.Default.Add,
+                    label = "Add money",
+                    actionEnum = ActionEnum.ADD_MONEY
+                ),
+                ActionButtonData(
+                    icon = Icons.Default.List,
+                    label = "Insights",
+                    actionEnum = ActionEnum.INSIGHTS
+                )
             )
         )
+
+        // Update the cache
+        cache.emit(businessAccountData)
     }
+
+    fun observeBusinessAccountData(): Flow<BusinessAccountData?> = cache
 }

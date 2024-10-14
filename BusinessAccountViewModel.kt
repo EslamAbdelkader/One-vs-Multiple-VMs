@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BusinessAccountViewModel @Inject constructor(
-    private val getBusinessAccountDataUseCase: GetBusinessAccountDataUseCase,
-    private val getUserDataUseCase: GetUserDataUseCase,
+    private val fetchAccountOverviewData: FetchAccountOverviewData,
+    private val observeBusinessAccountDataUseCase: ObserveBusinessAccountDataUseCase,
     private val mapper: BusinessAccountMapper
 ) : ViewModel() {
 
@@ -29,6 +29,16 @@ class BusinessAccountViewModel @Inject constructor(
     val errorMessage: StateFlow<String?> = _errorMessage
 
     init {
+        viewModelScope.launch {
+            observeBusinessAccountDataUseCase().collect { accountOverviewData ->
+                if (accountOverviewData != null) {
+                    _uiState.value = mapper.map(
+                        accountOverviewData.businessAccountData,
+                        accountOverviewData.userData
+                    )
+                }
+            }
+        }
         refreshData()
     }
 
@@ -36,10 +46,7 @@ class BusinessAccountViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val businessData = getBusinessAccountDataUseCase.execute()
-                val userData = getUserDataUseCase.execute()
-                val uiState = mapper.map(businessData, userData)
-                _uiState.value = uiState
+                fetchAccountOverviewData()
             } catch (e: Exception) {
                 _errorMessage.value = "Failed to refresh data: ${e.message}"
             } finally {
