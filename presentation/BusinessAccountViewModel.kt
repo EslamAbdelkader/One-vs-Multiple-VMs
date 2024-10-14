@@ -1,9 +1,11 @@
 // BusinessAccountViewModel.kt
-package com.example.myandroidplayground
+package com.example.myandroidplayground.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myandroidplayground.mappers.BusinessAccountMapper
+import com.example.myandroidplayground.domain.FetchAccountOverviewData
+import com.example.myandroidplayground.domain.ObserveAccountOverviewDataUseCase
+import com.example.myandroidplayground.presentation.mappers.BusinessAccountMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BusinessAccountViewModel @Inject constructor(
     private val fetchAccountOverviewData: FetchAccountOverviewData,
-    private val observeBusinessAccountDataUseCase: ObserveBusinessAccountDataUseCase,
+    private val observeAccountOverviewDataUseCase: ObserveAccountOverviewDataUseCase,
     private val mapper: BusinessAccountMapper
 ) : ViewModel() {
 
@@ -31,7 +33,7 @@ class BusinessAccountViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            observeBusinessAccountDataUseCase().collect { accountOverviewData ->
+            observeAccountOverviewDataUseCase().collect { accountOverviewData ->
                 if (accountOverviewData != null) {
                     _uiState.value = mapper.map(
                         accountOverviewData.businessAccountData,

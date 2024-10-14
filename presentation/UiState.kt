@@ -1,4 +1,4 @@
-package com.example.myandroidplayground
+package com.example.myandroidplayground.presentation
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector

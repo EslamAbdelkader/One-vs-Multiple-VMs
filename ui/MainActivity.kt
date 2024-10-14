@@ -1,5 +1,5 @@
 // MainActivity.kt
-package com.example.myandroidplayground
+package com.example.myandroidplayground.ui
 
 import android.os.Bundle
 import android.widget.Toast
@@ -13,6 +13,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.myandroidplayground.ui.compose.BusinessAccountScreen
+import com.example.myandroidplayground.presentation.BusinessAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

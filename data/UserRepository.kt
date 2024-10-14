@@ -1,5 +1,5 @@
 // UserRepository.kt
-package com.example.myandroidplayground
+package com.example.myandroidplayground.data
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
