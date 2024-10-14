@@ -21,6 +21,7 @@ data class BusinessAccountData(
 )
 
 data class TransactionData(
+    val id: Int,
     val title: String,
     val amount: String,
     val description: String,

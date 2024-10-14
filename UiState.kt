@@ -14,6 +14,7 @@ data class UiState(
 )
 
 data class Transaction(
+    val id: Int,
     val title: String,
     val amount: String,
     val description: String,
@@ -22,5 +23,12 @@ data class Transaction(
 
 data class ActionButtonData(
     val icon: ImageVector,
-    val label: String
+    val label: String,
+    val actionEnum: ActionEnum
 )
+
+enum class ActionEnum {
+    SEND_MONEY,
+    ADD_MONEY,
+    INSIGHTS
+}

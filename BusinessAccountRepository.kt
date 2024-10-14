@@ -10,6 +10,11 @@ import kotlin.random.Random
 
 class BusinessAccountRepository @Inject constructor() {
     fun getBusinessAccountData(): BusinessAccountData {
+        // Throw an exception with a 20% probability to simulate an error
+        if (Random.nextInt(5) == 0) {
+            throw Exception("Random error occurred while fetching business account data")
+        }
+
         // Generate a random balance between 100 and 1000
         val randomBalance = Random.nextDouble(100.0, 1000.0)
         val formattedBalance = "£%.2f".format(randomBalance)
@@ -31,7 +36,8 @@ class BusinessAccountRepository @Inject constructor() {
             TransactionData(
                 title = if (amount < 0) "To: Electricity company" else "SumUp pay-in",
                 amount = formattedAmount,
-                description = description
+                description = description,
+                id = Random.nextInt()
             )
         }
 
@@ -43,9 +49,9 @@ class BusinessAccountRepository @Inject constructor() {
             transactions = transactions,
             incomingOutgoingTitle = "Incoming vs. Outgoing",
             actionButtons = listOf(
-                ActionButtonData(icon = Icons.Default.ArrowForward, label = "Send money"),
-                ActionButtonData(icon = Icons.Default.Add, label = "Add money"),
-                ActionButtonData(icon = Icons.Default.List, label = "Insights")
+                ActionButtonData(icon = Icons.Default.ArrowForward, label = "Send money", actionEnum = ActionEnum.SEND_MONEY),
+                ActionButtonData(icon = Icons.Default.Add, label = "Add money", actionEnum = ActionEnum.ADD_MONEY),
+                ActionButtonData(icon = Icons.Default.List, label = "Insights", actionEnum = ActionEnum.INSIGHTS)
             )
         )
     }

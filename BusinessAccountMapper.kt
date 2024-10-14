@@ -36,6 +36,7 @@ class BusinessAccountMapper @Inject constructor() {
             val amountColor = if (transaction.amount.startsWith("-")) Color.Red else Color.Blue
             val formattedDescription = formatDescription(transaction.description)
             Transaction(
+                id = transaction.id,
                 title = transaction.title,
                 amount = transaction.amount,
                 description = formattedDescription,
