@@ -3,10 +3,10 @@ package com.example.myandroidplayground.presentation
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
+// UiState.kt
+
 data class UiState(
-    val accountHeaderTitle: String,
-    val accountBalance: String,
-    val accountBalanceDescription: String,
+    val headerData: HeaderData,
     val lastTransactionsTitle: String,
     val transactions: List<Transaction>,
     val incomingOutgoingTitle: String,
@@ -32,3 +32,9 @@ enum class ActionEnum {
     ADD_MONEY,
     INSIGHTS
 }
+
+data class HeaderData(
+    val accountHeaderTitle: String,
+    val accountBalance: String,
+    val accountBalanceDescription: String
+)
