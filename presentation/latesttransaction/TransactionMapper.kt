@@ -1,5 +1,5 @@
 // TransactionMapper.kt
-package com.example.myandroidplayground.presentation.mappers
+package com.example.myandroidplayground.presentation.latesttransaction
 
 import androidx.compose.ui.graphics.Color
 import com.example.myandroidplayground.data.BusinessAccountData

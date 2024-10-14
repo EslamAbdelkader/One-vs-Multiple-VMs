@@ -1,10 +1,10 @@
 // BusinessAccountViewModel.kt
-package com.example.myandroidplayground.presentation
+package com.example.myandroidplayground.presentation.latesttransaction
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myandroidplayground.domain.ObserveBusinessAccountDataUseCase
-import com.example.myandroidplayground.presentation.mappers.TransactionMapper
+import com.example.myandroidplayground.presentation.TransactionsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

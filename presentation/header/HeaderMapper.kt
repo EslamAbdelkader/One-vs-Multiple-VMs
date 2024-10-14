@@ -1,5 +1,5 @@
 // HeaderAndBalanceFormatter.kt
-package com.example.myandroidplayground.presentation.mappers
+package com.example.myandroidplayground.presentation.header
 
 import com.example.myandroidplayground.data.BusinessAccountData
 import com.example.myandroidplayground.data.UserData

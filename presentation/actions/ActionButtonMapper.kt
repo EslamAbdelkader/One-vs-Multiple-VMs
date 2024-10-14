@@ -1,5 +1,5 @@
 // ActionButtonMapper.kt
-package com.example.myandroidplayground.presentation.mappers
+package com.example.myandroidplayground.presentation.actions
 
 import com.example.myandroidplayground.data.BusinessAccountData
 import com.example.myandroidplayground.data.UserData

@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.myandroidplayground.presentation.ActionEnum
 import com.example.myandroidplayground.presentation.ActionsUiState
-import com.example.myandroidplayground.presentation.ActionsViewModel
+import com.example.myandroidplayground.presentation.actions.ActionsViewModel
 
 @Composable
 fun ActionButtons(

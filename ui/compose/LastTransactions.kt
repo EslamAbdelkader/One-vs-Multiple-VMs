@@ -20,7 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.myandroidplayground.presentation.LatestTransactionsViewModel
+import com.example.myandroidplayground.presentation.latesttransaction.LatestTransactionsViewModel
 import com.example.myandroidplayground.presentation.TransactionsUiState
 
 @Composable
