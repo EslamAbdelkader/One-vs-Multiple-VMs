@@ -13,7 +13,6 @@ import com.example.myandroidplayground.presentation.UiState
 @Composable
 fun BusinessAccountScreen(
     uiState: UiState,
-    onRefresh: () -> Unit
 ) {
     if (uiState is UiState.Loading) {
         return
@@ -24,7 +23,7 @@ fun BusinessAccountScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        AccountHeader(onRefresh = onRefresh)
+        AccountHeader()
         Spacer(modifier = Modifier.height(20.dp))
         ActionButtons()
         Spacer(modifier = Modifier.height(20.dp))

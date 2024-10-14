@@ -30,10 +30,7 @@ class MainActivity : ComponentActivity() {
 
             Box(modifier = Modifier.fillMaxSize()) {
                 uiState?.let { state ->
-                    BusinessAccountScreen(
-                        uiState = state,
-                        onRefresh = { businessAccountViewModel.refreshData() }
-                    )
+                    BusinessAccountScreen(uiState = state)
                 }
                 if (isLoading) {
                     Box(

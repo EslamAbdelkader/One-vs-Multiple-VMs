@@ -18,20 +18,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.myandroidplayground.presentation.BusinessAccountViewModel
 import com.example.myandroidplayground.presentation.HeaderUiState
 import com.example.myandroidplayground.presentation.HeaderViewModel
 
 @Composable
 fun AccountHeader(
+    parentViewModel: BusinessAccountViewModel = hiltViewModel(),
     viewModel: HeaderViewModel = hiltViewModel(),
-    onRefresh: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     uiState?.let {
         AccountHeader(
             uiState = it,
-            onRefresh = onRefresh
+            onRefresh = parentViewModel::refreshData
         )
     }
 }
