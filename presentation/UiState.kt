@@ -5,12 +5,15 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 // UiState.kt
 
-data class UiState(
-    val headerData: HeaderData,
+sealed class UiState(
+) {
+    data object Loading : UiState()
+    data object Loaded : UiState()
+}
+
+data class TransactionsUiState(
     val lastTransactionsTitle: String,
-    val transactions: List<Transaction>,
-    val incomingOutgoingTitle: String,
-    val actionButtons: List<ActionButtonData>
+    val transactions: List<Transaction>
 )
 
 data class Transaction(
@@ -19,6 +22,10 @@ data class Transaction(
     val amount: String,
     val description: String,
     val amountColor: Color
+)
+
+data class ActionsUiState(
+    val actionButtons: List<ActionButtonData>
 )
 
 data class ActionButtonData(
@@ -33,7 +40,7 @@ enum class ActionEnum {
     INSIGHTS
 }
 
-data class HeaderData(
+data class HeaderUiState(
     val accountHeaderTitle: String,
     val accountBalance: String,
     val accountBalanceDescription: String

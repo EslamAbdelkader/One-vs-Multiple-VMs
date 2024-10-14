@@ -13,8 +13,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.myandroidplayground.ui.compose.BusinessAccountScreen
 import com.example.myandroidplayground.presentation.BusinessAccountViewModel
+import com.example.myandroidplayground.ui.compose.BusinessAccountScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,18 +26,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             val isLoading by businessAccountViewModel.isLoading.collectAsState()
             val uiState by businessAccountViewModel.uiState.collectAsState()
-            val navigationEvent by businessAccountViewModel.navigationEvent.collectAsState()
             val errorMessage by businessAccountViewModel.errorMessage.collectAsState()
 
             Box(modifier = Modifier.fillMaxSize()) {
                 uiState?.let { state ->
                     BusinessAccountScreen(
                         uiState = state,
-                        onRefresh = { businessAccountViewModel.refreshData() },
-                        onSendMoneyClick = { businessAccountViewModel.onSendMoneyClick() },
-                        onAddMoneyClick = { businessAccountViewModel.onAddMoneyClick() },
-                        onInsightsClick = { businessAccountViewModel.onInsightsClick() },
-                        onTransactionClick = { businessAccountViewModel.onTransactionClick(it) }
+                        onRefresh = { businessAccountViewModel.refreshData() }
                     )
                 }
                 if (isLoading) {
@@ -52,11 +47,6 @@ class MainActivity : ComponentActivity() {
                 errorMessage?.let { error ->
                     Toast.makeText(applicationContext, error, Toast.LENGTH_SHORT).show()
                     businessAccountViewModel.onErrorHandled()
-                }
-
-                navigationEvent?.let { event ->
-                    Toast.makeText(applicationContext, event, Toast.LENGTH_SHORT).show()
-                    businessAccountViewModel.onNavigationHandled()
                 }
             }
         }

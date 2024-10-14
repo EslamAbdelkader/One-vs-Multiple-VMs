@@ -11,14 +11,33 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
-import com.example.myandroidplayground.presentation.UiState
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.myandroidplayground.presentation.HeaderUiState
+import com.example.myandroidplayground.presentation.HeaderViewModel
 
 @Composable
-fun AccountHeader(uiState: UiState, onRefresh: () -> Unit) {
+fun AccountHeader(
+    viewModel: HeaderViewModel = hiltViewModel(),
+    onRefresh: () -> Unit
+) {
+    val uiState by viewModel.uiState.collectAsState()
+
+    uiState?.let {
+        AccountHeader(
+            uiState = it,
+            onRefresh = onRefresh
+        )
+    }
+}
+
+@Composable
+private fun AccountHeader(uiState: HeaderUiState, onRefresh: () -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -29,9 +48,13 @@ fun AccountHeader(uiState: UiState, onRefresh: () -> Unit) {
         }
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = uiState.headerData.accountHeaderTitle, fontSize = 20.sp)
-            Text(text = uiState.headerData.accountBalance, fontSize = 30.sp)
-            Text(text = uiState.headerData.accountBalanceDescription, fontSize = 14.sp, color = Color.Gray)
+            Text(text = uiState.accountHeaderTitle, fontSize = 20.sp)
+            Text(text = uiState.accountBalance, fontSize = 30.sp)
+            Text(
+                text = uiState.accountBalanceDescription,
+                fontSize = 14.sp,
+                color = Color.Gray
+            )
         }
 
         IconButton(onClick = onRefresh) {

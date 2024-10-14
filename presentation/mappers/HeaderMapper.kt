@@ -1,20 +1,23 @@
 // HeaderAndBalanceFormatter.kt
 package com.example.myandroidplayground.presentation.mappers
 
+import com.example.myandroidplayground.data.BusinessAccountData
 import com.example.myandroidplayground.data.UserData
-import com.example.myandroidplayground.presentation.HeaderData
+import com.example.myandroidplayground.presentation.HeaderUiState
 import javax.inject.Inject
 
 class HeaderMapper @Inject constructor() {
-    fun formatHeaderData(
-        title: String,
-        balance: String,
-        description: String,
+    fun map(
+        businessAccountData: BusinessAccountData,
         userData: UserData
-    ): HeaderData {
+    ): HeaderUiState {
+        val balance = businessAccountData.accountBalance
+        val title = businessAccountData.accountHeaderTitle
+        val description = businessAccountData.accountBalanceDescription
+
         val formattedBalance = if (balance.startsWith("£")) balance else "£$balance"
         val formattedTitle = if (userData.isPremium) "$title (Premium)" else title
-        return HeaderData(
+        return HeaderUiState(
             accountHeaderTitle = formattedTitle,
             accountBalance = formattedBalance,
             accountBalanceDescription = description

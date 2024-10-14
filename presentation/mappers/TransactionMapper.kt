@@ -2,13 +2,15 @@
 package com.example.myandroidplayground.presentation.mappers
 
 import androidx.compose.ui.graphics.Color
+import com.example.myandroidplayground.data.BusinessAccountData
 import com.example.myandroidplayground.presentation.Transaction
-import com.example.myandroidplayground.data.TransactionData
+import com.example.myandroidplayground.presentation.TransactionsUiState
 import javax.inject.Inject
 
 class TransactionMapper @Inject constructor() {
-    fun map(transactions: List<TransactionData>): List<Transaction> {
-        return transactions.map { transaction ->
+    fun map(data: BusinessAccountData): TransactionsUiState {
+        val lastTransactionsTitle = data.lastTransactionsTitle
+        val transactions = data.transactions.map { transaction ->
             val amountColor = if (transaction.amount.startsWith("-")) Color.Red else Color.Blue
             val formattedDescription = formatDescription(transaction.description)
             Transaction(
@@ -19,6 +21,11 @@ class TransactionMapper @Inject constructor() {
                 amountColor = amountColor
             )
         }
+
+        return TransactionsUiState(
+            lastTransactionsTitle = lastTransactionsTitle,
+            transactions = transactions
+        )
     }
 
     private fun formatDescription(description: String): String {
