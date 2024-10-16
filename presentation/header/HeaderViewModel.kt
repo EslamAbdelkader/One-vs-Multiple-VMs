@@ -21,11 +21,8 @@ class HeaderViewModel @Inject constructor(
     val uiState: StateFlow<HeaderUiState?> = _uiState
 
     init {
-        println("eslam - $this")
-
         viewModelScope.launch {
             observeAccountOverviewDataUseCase().collect {
-                println("eslam - $it")
                 if (it != null) {
                     _uiState.value = mapper.map(
                         businessAccountData = it.businessAccountData,
